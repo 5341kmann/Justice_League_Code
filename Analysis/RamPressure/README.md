@@ -67,6 +67,6 @@ Most of the datasets I've created as part of this project are in the form of `.h
 The HDF5 file format stores the output data efficiently and allows for data from all the galaixes to be stored in one file. The HDF5 file type can be read into python easily as a `pandas` DataFrame using `pandas.read_hdf(filepath, key=key)`, where the `key` option specifies the table you want. Each galaxy is saved with a key identifying its host and redshift 0 haloid, i.e. `key='h148_13'`. 
 
 The `tracked_particles.hdf5` file is not stored on Github (as it is too large) but can be found on `quirm` at 
-> `/home/akinshol/Research/Justice_League_Code/Data/tracked_particles.hdf5`
-
+> `/home/akinshol/Research/Justice_League_Code/Data/tracked_particles.hdf5` # No longer Accessible on akinshol
+> `../../Data/tracked_particles.hdf5` # Accessible through Christensen's path christenc
 

@@ -47,7 +47,7 @@ with open('../../Data/QuenchingTimescales_InfallProperties.data','wb') as outfil
             f = filepaths[i] # infall snapshot filepath
             s = pynbody.load(f) # load in the snapshot at infall
             s.physical_units()
-            h = s.halos()
+            h = s.halos(halo_numbers='v1')
 
             filepaths, haloids, h1ids = get_stored_filepaths_haloids(sim, haloid)
 

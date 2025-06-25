@@ -8,10 +8,13 @@ mpl.rcParams['font.sans-serif'] = ['Tahoma','Lucida Grande','Verdana', 'DejaVu S
 
 import socket
 if socket.gethostname() == "quirm.math.grinnell.edu":
-    z0data_prefix = '/home/akinshol/Research/Justice_League_Code/Data/z0_data/'
+    # z0data_prefix = '/home/akinshol/Data/Akins_Hollis_JL_Code/Data/z0_data/'
+    z0data_prefix = '/home/christenc/Code/Datafiles/PartTrace_Hollis/z0_data' # Christensen's path
 else:
-    z0data_prefix = '/Users/hollis/Google Drive/Grinnell/MAP/Justice_League_Code/Data/z0_data/' # filepath is different on my local machine
-
+    raise RuntimeError("Hostname is not the expected value: quirm.math.grinnell.edu")
+    # Do not have a local file path set up for this code.
+    # z0data_prefix = '/Users/hollis/Google Drive/Grinnell/MAP/Justice_League_Code/Data/z0_data/' # filepath is different on my local machine
+    
 
 def read_file(simname):
     '''

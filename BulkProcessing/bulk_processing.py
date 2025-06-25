@@ -20,11 +20,12 @@ z0data_prefix = '/home/akinshol/Data/Akins_Hollis_JL_Code/Data/z0_data/'
 # set the config to prioritize the AHF catalog
 # otherwise it prioritizes AmgiaGrpCatalogue and you lose a lot of important info
 pynbody.config['halo-class-priority'] =  [pynbody.halo.ahf.AHFCatalogue,
-                                          pynbody.halo.GrpCatalogue,
-                                          pynbody.halo.AmigaGrpCatalogue,
-                                          pynbody.halo.legacy.RockstarIntermediateCatalogue,
+                                        #   pynbody.halo.AmigaGrpCatalogue, -- No longer supported
+                                        #   pynbody.halo.GrpCatalogue, #  -- No longer supported
+                                        #   pynbody.halo.legacy.RockstarIntermediateCatalogue, # -- No longer supported
                                           pynbody.halo.rockstar.RockstarCatalogue,
-                                          pynbody.halo.subfind.SubfindCatalogue, pynbody.halo.hop.HOPCatalogue]
+                                          pynbody.halo.subfind.SubfindCatalogue,
+                                          pynbody.halo.hop.HOPCatalogue]
 
 ####################################################################################################################
 ### codelock below is copied from the pynboady source code
@@ -112,7 +113,7 @@ def bulk_processing(filepath,halo_nums, name):
         # first, load in the simulation and halo catalog
         s = pynbody.load(filepath)
         s.physical_units()
-        h = s.halos()
+        h = s.halos(halo_numbers='v1')
 
         # this is the #ID key which corresponds to the hostHalo property 
         id = []

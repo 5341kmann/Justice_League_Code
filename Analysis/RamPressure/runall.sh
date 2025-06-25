@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ~/Research/Justice_League_Code/Analysis/RamPressure/
+# cd ~/Research/Justice_League_Code/Analysis/RamPressure/
+cd /home/christenc/Code/python/Justice_League_Code/Analysis/RamPressure/ # Christensen's path
 pwd
 date
 

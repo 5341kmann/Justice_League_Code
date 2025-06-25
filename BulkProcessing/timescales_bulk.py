@@ -14,11 +14,12 @@ import os
 
 # set the config to prioritize the AHF catalog
 pynbody.config['halo-class-priority'] =  [pynbody.halo.ahf.AHFCatalogue,
-                                          pynbody.halo.GrpCatalogue,
-                                          pynbody.halo.AmigaGrpCatalogue,
-                                          pynbody.halo.legacy.RockstarIntermediateCatalogue,
+                                        #   pynbody.halo.AmigaGrpCatalogue, -- No longer supported
+                                        #   pynbody.halo.GrpCatalogue, #  -- No longer supported
+                                        #   pynbody.halo.legacy.RockstarIntermediateCatalogue, # -- No longer supported
                                           pynbody.halo.rockstar.RockstarCatalogue,
-                                          pynbody.halo.subfind.SubfindCatalogue, pynbody.halo.hop.HOPCatalogue]
+                                          pynbody.halo.subfind.SubfindCatalogue,
+                                          pynbody.halo.hop.HOPCatalogue]
                                           
 
 def bulk_processing(tstep, haloids, rvirs, snapshots, path, savepath):
@@ -28,7 +29,7 @@ def bulk_processing(tstep, haloids, rvirs, snapshots, path, savepath):
     s.physical_units()
     t = s.properties['time'].in_units('Gyr')
     print(f'Loaded snapshot {snapshot}, {13.800797497330507 - t} Gyr ago')
-    h = s.halos()
+    h = s.halos(halo_numbers='v1')
     hd = s.halos(dummy=True)
     
     # get current halo ids
@@ -76,8 +77,11 @@ def bulk_processing(tstep, haloids, rvirs, snapshots, path, savepath):
 
     
     for i, rvir, z0haloid in zip(current_haloids, current_rvirs, z0_haloids):
+        i = int(i)  # ensure halo ID is an integer
+        z0haloid = int(z0haloid)  # ensure z0 halo ID is an integer 
+        
         print('Major progenitor halod ID:', i)
-        halo = h.load_copy(i)        
+        halo = h.load_copy(i)       
         properties = hd[i].properties
 
         x = (properties['Xc'] - h1x) / s.properties['h'] * s.properties['a'] 

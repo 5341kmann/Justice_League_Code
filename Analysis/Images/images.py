@@ -69,7 +69,7 @@ sim = '/home/christenc/Data/Sims/h242.cosmo50PLK.3072g/h242.cosmo50PLK.3072gst5H
 name = 'h242'
 s = pynbody.load(sim)
 s.physical_units()
-h = s.halos()
+h = s.halos(halo_numbers='v1')
 h_dummy = s.halos(dummy = True)
 
 print(s.properties['boxsize'])
@@ -189,7 +189,7 @@ sim = '/home/christenc/Data/Sims/h148.cosmo50PLK.3072g/h148.cosmo50PLK.3072g3Hbw
 name = 'h148'
 s = pynbody.load(sim)
 s.physical_units()
-h = s.halos()
+h = s.halos(halo_numbers='v1')
 h_dummy = s.halos(dummy = True)
 print('Loaded simulation')
 

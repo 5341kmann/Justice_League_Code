@@ -195,7 +195,7 @@ for sim, z0haloid, tinfall,simname in zip(sims, z0haloids, tinfalls,simnames):
     s = pynbody.load(f)
     s.physical_units()
     print('Loaded snap, making halo catalog')
-    h = s.halos()
+    h = s.halos(halo_numbers='v1')
     halo = h[haloid]
     host = h[1] # may not always be halo 1! (but probably is)
     print('Made halo catalog')

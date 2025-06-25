@@ -142,7 +142,7 @@ for iax,t,y,f,hid,h1id in zip(img_axes,ts,ys,fs,hs,h1s):
     
     s = pynbody.load(f)
     s.physical_units()
-    h = s.halos()
+    h = s.halos(halo_numbers='v1')
     halo = h[hid]
     host = h[h1id] # may not always be halo 1! (but probably is)
     a = s.properties['a']

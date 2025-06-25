@@ -10,11 +10,12 @@ import os
 
 # set the config to prioritize the AHF catalog
 pynbody.config['halo-class-priority'] =  [pynbody.halo.ahf.AHFCatalogue,
-                                          pynbody.halo.GrpCatalogue,
-                                          pynbody.halo.AmigaGrpCatalogue,
-                                          pynbody.halo.legacy.RockstarIntermediateCatalogue,
+                                        #   pynbody.halo.AmigaGrpCatalogue, -- No longer supported
+                                        #   pynbody.halo.GrpCatalogue, #  -- No longer supported
+                                        #   pynbody.halo.legacy.RockstarIntermediateCatalogue, # -- No longer supported
                                           pynbody.halo.rockstar.RockstarCatalogue,
-                                          pynbody.halo.subfind.SubfindCatalogue, pynbody.halo.hop.HOPCatalogue]
+                                          pynbody.halo.subfind.SubfindCatalogue,
+                                          pynbody.halo.hop.HOPCatalogue]
                                           
 
 def get_stored_filepaths_haloids(sim,z0haloid,return_z0_haloids=False):
@@ -56,7 +57,7 @@ def bulk_processing(sim, savepath):
         s.physical_units()
         t = s.properties['time'].in_units('Gyr')
         print(f'{sim}: Loaded snapshot {filepath[-5:]}, {13.800797497330507 - t} Gyr ago')
-        h = s.halos()
+        h = s.halos(halo_numbers='v1')
         hd = s.halos(dummy=True)
     
         # get h1 properties

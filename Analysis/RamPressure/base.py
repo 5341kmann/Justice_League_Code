@@ -30,13 +30,14 @@ mpl.rcParams.update({'figure.dpi': 200,
 # set the config to prioritize the AHF catalog
 # otherwise it prioritizes AmgiaGrpCatalogue and you lose a lot of important info
 pynbody.config['halo-class-priority'] =  [pynbody.halo.ahf.AHFCatalogue,
-                                          pynbody.halo.AmigaGrpCatalogue,
-                                          pynbody.halo.GrpCatalogue,
-                                          pynbody.halo.legacy.RockstarIntermediateCatalogue,
+                                        #   pynbody.halo.AmigaGrpCatalogue, -- No longer supported
+                                        #   pynbody.halo.GrpCatalogue, #  -- No longer supported
+                                        #   pynbody.halo.legacy.RockstarIntermediateCatalogue, # -- No longer supported
                                           pynbody.halo.rockstar.RockstarCatalogue,
                                           pynbody.halo.subfind.SubfindCatalogue,
                                           pynbody.halo.hop.HOPCatalogue]
 
+['DummyHalo', 'Halo', 'HaloCatalog', 'HaloCatalogue', 'HaloNumberMapper', 'HaloParticleIndices', 'Iterable', 'MonotonicHaloNumberMapper', 'NDArray', 'TYPE_CHECKING', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '_alias_american_spelling', '_fix_american_spelling', 'adaptahop', 'ahf', 'annotations', 'array', 'copy', 'create_halo_number_mapper', 'details', 'hbtplus', 'hop', 'iter_subclasses', 'logger', 'logging', 'make_iord_to_offset_mapper', 'np', 'number_array', 'rockstar', 'snapshot', 'subfind', 'subfindhdf', 'subhalo_catalogue', 'units', 'util', 'velociraptor', 'warnings', 'weakref']
 
 
 
@@ -94,7 +95,7 @@ setattr(mpl.axes.Axes, "plot_median", plot_median)
 # define functions for basic data manipulation, importing, etc. used by everything
 def get_stored_filepaths_haloids(sim,z0haloid):
     # get snapshot paths and haloids from stored file
-    with open('../../Data/filepaths_haloids.pickle','rb') as f:
+    with open('/home/christenc/Code/Datafiles/PartTrace_Hollis/filepaths_haloids.pickle','rb') as f:
         d = pickle.load(f)
     try:
         filepaths = d['filepaths'][sim]
@@ -119,7 +120,7 @@ def get_stored_filepaths_haloids(sim,z0haloid):
 def read_timesteps(sim):
     '''Function to read in the data file which contains quenching and infall times'''
     data = []
-    with open(f'../../Data/timesteps_data/{sim}.data', 'rb') as f:
+    with open(f'/home/christenc/Code/Datafiles/PartTrace_Hollis/Data/timesteps_data/{sim}.data', 'rb') as f:
         while True:
             try:
                 data.append(pickle.load(f,encoding='latin1'))
@@ -132,8 +133,10 @@ def read_timesteps(sim):
 # timescales (quenching timescales, derived from timesteps)
 def read_timescales():
     '''Function to read in the data file which contains quenching and infall times'''
+    ts_path = '/home/christenc/Code/Datafiles/PartTrace_Hollis/QuenchingTimescales.data'
+    
     data = []
-    with open('../../Data/QuenchingTimescales.data', 'rb') as f:
+    with open('/home/christenc/Code/Datafiles/PartTrace_Hollis/QuenchingTimescales.data', 'rb') as f:
         while True:
             try:
                 data.append(pickle.load(f,encoding='latin1'))
@@ -147,7 +150,7 @@ def read_timescales():
 def read_infall_properties():
     '''Function to read in the data file with quenching timescales and satellite properties at infall.'''
     data = []
-    with open(f'../../Data/QuenchingTimescales_InfallProperties.data','rb') as f:
+    with open(f'/home/christenc/Code/Datafiles/PartTrace_Hollis/QuenchingTimescales_InfallProperties.data','rb') as f:
         while True:
             try: 
                 data.append(pickle.load(f))
@@ -168,7 +171,7 @@ def get_snap_start(sim,z0haloid):
 
     for f, haloid, h1id in zip(filepaths, haloids, h1ids):
         s = pynbody.load(f)
-        h = s.halos()
+        h = s.halos(halo_numbers='v1')
         halo = h[haloid]
         h1 = h[h1id]
         

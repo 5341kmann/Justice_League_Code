@@ -20,7 +20,7 @@ def run_tracking(sim, z0haloid, filepaths,haloids,h1ids):
     for f,haloid,h1id in zip(filepaths,haloids,h1ids):
         s = pynbody.load(f)
         s.physical_units()
-        h = s.halos()
+        h = s.halos(halo_numbers='v1')
         halo = h[haloid]
         h1 = h[h1id]
         snapnum = f[-4:]

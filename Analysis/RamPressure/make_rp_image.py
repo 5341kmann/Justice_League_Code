@@ -14,7 +14,7 @@ print('Loading',path)
 
 s = pynbody.load(path)
 s.physical_units()
-h = s.halos()
+h = s.halos(halo_numbers='v1')
 
 print('Centering halo 1')
 pynbody.analysis.halo.center(h[1])

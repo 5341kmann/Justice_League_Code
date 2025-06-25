@@ -14,11 +14,12 @@ import os
 
 # set the config to prioritize the AHF catalog
 pynbody.config['halo-class-priority'] =  [pynbody.halo.ahf.AHFCatalogue,
-                                          pynbody.halo.GrpCatalogue,
-                                          pynbody.halo.AmigaGrpCatalogue,
-                                          pynbody.halo.legacy.RockstarIntermediateCatalogue,
+                                        #   pynbody.halo.AmigaGrpCatalogue, -- No longer supported
+                                        #   pynbody.halo.GrpCatalogue, #  -- No longer supported
+                                        #   pynbody.halo.legacy.RockstarIntermediateCatalogue, # -- No longer supported
                                           pynbody.halo.rockstar.RockstarCatalogue,
-                                          pynbody.halo.subfind.SubfindCatalogue, pynbody.halo.hop.HOPCatalogue]
+                                          pynbody.halo.subfind.SubfindCatalogue,
+                                          pynbody.halo.hop.HOPCatalogue]
 
 
 from timescales_bulk import bulk_processing # import the bulk processing function

@@ -8,7 +8,7 @@ path = '/home/christenc/Data/Sims/h229.cosmo50PLK.3072g/h229.cosmo50PLK.3072gst5
 
 s = pynbody.load(path)
 s.physical_units()
-h = s.halos()
+h = s.halos(halo_numbers='v1')
 
 print('centering...')
 pynbody.analysis.halo.center(h[1])

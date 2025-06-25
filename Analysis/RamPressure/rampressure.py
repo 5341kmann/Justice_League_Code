@@ -23,7 +23,7 @@ def calc_ram_pressure(sim, z0haloid, filepaths, haloids, h1ids):
         # load simulation
         s = pynbody.load(f)
         s.physical_units()
-        h = s.halos()
+        h = s.halos(halo_numbers='v1')
         sat = h[haloid]
         host = h[h1id]
         snapnum = f[-4:]
